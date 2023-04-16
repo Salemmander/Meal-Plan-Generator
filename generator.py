@@ -8,17 +8,18 @@ openai.api_key = config.api_key
 
 def get_calories(sex, weight, height, age):
     match sex:
-        case 'male':
+        case "male":
             return int((10 * weight) + (6.25 * height) - (5 * age) + 5)
-        case 'female':
+        case "female":
             return int((10 * weight) + (6.25 * height) - (5 * age) - 161)
+
 
 def generate(sex, weight, height, age, avoid_list):
     avoid = []
     for entry in avoid_list:
         avoid.append(entry)
         i += 1
-    avoid = ','.join(avoid)
+    avoid = ",".join(avoid)
 
     cal = get_calories(sex, weight, height, age)
 
@@ -35,10 +36,7 @@ def generate(sex, weight, height, age, avoid_list):
     Avoid: {avoid}"
 
     response = openai.Completion.create(
-        engine='text-davinci-002',
-        prompt=prompt,
-        temperature=0.2,
-        max_tokens=2048
+        engine="text-davinci-002", prompt=prompt, temperature=0.2, max_tokens=2048
     )
 
-    return response['choices'][0]['text']
+    return response["choices"][0]["text"]
