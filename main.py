@@ -1,13 +1,10 @@
 import generator
 import PySimpleGUI as sg
 
-# Add some color
-# to the window
+
 sg.theme("SandyBeach")
 
-# Very basic window.
-# Return values using
-# automatic-numbered keys
+
 layout = [
     [sg.Text("Please enter your Sex, Weight, Height, Age")],
     [sg.Radio("kg/cm", "RADIO1", default=True), sg.Radio("lbs/in", "RADIO1")],
@@ -23,8 +20,7 @@ window = sg.Window("Simple data entry window", layout)
 event, values = window.read()
 window.close()
 
-# The input data looks like a simple list
-# when automatic numbered
+
 if values[2]:
     sex = "male"
 else:
@@ -39,4 +35,9 @@ if not values[0]:
     weight *= 0.453592
     height *= 2.54
 
-print(generator.generate(sex, weight, height, age, avoid))
+
+column = [[sg.Text(generator.generate(sex, weight, height, age, avoid))]]
+layout2 = [[sg.Column(column, scrollable=True, vertical_scroll_only=True)]]
+window = sg.Window("Output window", layout2)
+event, values = window.read()
+window.close()
