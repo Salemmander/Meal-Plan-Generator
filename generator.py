@@ -17,20 +17,37 @@ def get_calories(sex, weight, height, age):
 def generate(sex, weight, height, age, avoid):
     cal = get_calories(sex, weight, height, age)
 
-    prompt = "Make a one week meal plan with a daily caloric intake of {cal} calories\n\
+    prompt = "Make 7 day meal plan with a daily caloric intake of {cal} calories\n\
     Format:\n\
     Day\n\
+    Breakfast\n\
     Recipe (calories)\n\
     Ingredients\n\
     Cooking instructions\n\
     1.\n\
     2.\n\
     3.\n\
-    ...\n\
+    ...\n\n\n\n\
+    Lunch\n\
+    Recipe (calories)\n\
+    Ingredients\n\
+    Cooking instructions\n\
+    1.\n\
+    2.\n\
+    3.\n\
+    ...\n\n\n\n\
+    Dinner\n\
+    Recipe (calories)\n\
+    Ingredients\n\
+    Cooking instructions\n\
+    1.\n\
+    2.\n\
+    3.\n\
+    ...\n\n\n\n\
     Avoid: {avoid}"
 
     response = openai.Completion.create(
-        engine="text-davinci-002", prompt=prompt, temperature=0.2, max_tokens=2048
+        engine="text-davinci-002", prompt=prompt, temperature=0, max_tokens=2048
     )
 
     return response["choices"][0]["text"]
