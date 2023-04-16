@@ -14,13 +14,7 @@ def get_calories(sex, weight, height, age):
             return int((10 * weight) + (6.25 * height) - (5 * age) - 161)
 
 
-def generate(sex, weight, height, age, avoid_list):
-    avoid = []
-    for entry in avoid_list:
-        avoid.append(entry)
-        i += 1
-    avoid = ",".join(avoid)
-
+def generate(sex, weight, height, age, avoid):
     cal = get_calories(sex, weight, height, age)
 
     prompt = "Make a one week meal plan with a daily caloric intake of {cal} calories\n\
